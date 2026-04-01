@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Connexa — Connect & Chat</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════
+   CONNEXA — Design System
+═══════════════════════════════════════════════ */
+:root {
+  --bg:        #0a0b0f;
+  --bg2:       #12141a;
+  --bg3:       #1a1d26;
+  --bg4:       #22263a;
+  --border:    #ffffff0f;
+  --border2:   #ffffff18;
+  --primary:   #6c63ff;
+  --primary2:  #8b85ff;
+  --primary-glow: #6c63ff40;
+  --accent:    #00d4aa;
+  --danger:    #ff5c72;
+  --text:      #f0f2ff;
+  --text2:     #9198b4;
+  --text3:     #5c6280;
+  --radius:    16px;
+  --radius-sm: 10px;
+  --sidebar-w: 320px;
+  --font-h:    'Syne', sans-serif;
+  --font-b:    'DM Sans', sans-serif;
+  --transition: 0.18s cubic-bezier(.4,0,.2,1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; overflow: hidden; }
+body {
+  font-family: var(--font-b);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button { cursor: pointer; font-family: var(--font-b); border: none; background: none; }
+input, textarea { font-family: var(--font-b); }
+* { scrollbar-width: thin; scrollbar-color: var(--bg4) transparent; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 4px; }
+
+/* ─── Layout ─────────────────────────────────── */
+.app { display: flex; height: 100vh; }
+.sidebar {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--bg);
+}
+
+/* ─── Auth Screen ────────────────────────────── */
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.auth-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.auth-orb.a { width: 500px; height: 500px; background: var(--primary); top: -100px; left: -100px; }
+.auth-orb.b { width: 400px; height: 400px; background: var(--accent); bottom: -80px; right: -80px; }
+.auth-card {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 24px;
+  padding: 48px 40px;
+  width: 420px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.5s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.auth-logo {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 32px;
+}
+.auth-logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.auth-logo-text {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.auth-title { font-family: var(--font-h); font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.auth-sub { color: var(--text2); margin-bottom: 32px; font-size: 14px; }
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
+.form-input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+.form-input::placeholder { color: var(--text3); }
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color: white;
+  border-radius: var(--radius-sm);
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 8px;
+  transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 20px var(--primary-glow);
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 28px var(--primary-glow); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.auth-switch {
+  text-align: center; margin-top: 24px; font-size: 13px; color: var(--text2);
+}
+.auth-switch button {
+  color: var(--primary2); font-weight: 600; background: none; border: none;
+  cursor: pointer; margin-left: 4px;
+}
+.auth-switch button:hover { text-decoration: underline; }
+.error-msg { background: #ff5c7215; border: 1px solid #ff5c7240; color: var(--danger); border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 16px; }
+
+/* ─── Sidebar Header ─────────────────────────── */
+.sidebar-header {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.brand-name { font-family: var(--font-h); font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text2);
+  font-size: 16px;
+  transition: all var(--transition);
+}
+.icon-btn:hover { background: var(--bg4); color: var(--text); border-color: var(--border2); }
+
+/* ─── Search ─────────────────────────────────── */
+.search-wrap { position: relative; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text3); pointer-events: none; }
+.search-input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px 10px 38px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.search-input:focus { border-color: var(--primary); }
+.search-input::placeholder { color: var(--text3); }
+
+/* ─── Tabs ───────────────────────────────────── */
+.tabs { display: flex; gap: 4px; padding: 12px 20px 0; }
+.tab {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text3);
+  text-align: center;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.tab.active {
+  background: var(--primary-glow);
+  color: var(--primary2);
+}
+.tab:hover:not(.active) { background: var(--bg3); color: var(--text2); }
+
+/* ─── Conversation List ──────────────────────── */
+.conv-list { flex: 1; overflow-y: auto; padding: 8px 12px; }
+.conv-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition);
+  position: relative;
+}
+.conv-item:hover { background: var(--bg3); }
+.conv-item.active { background: var(--bg4); }
+.avatar {
+  width: 46px; height: 46px; min-width: 46px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-h);
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+.avatar-sm { width: 36px; height: 36px; min-width: 36px; font-size: 11px; }
+.online-dot {
+  width: 11px; height: 11px;
+  background: var(--accent);
+  border: 2px solid var(--bg2);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 1px; right: 1px;
+}
+.conv-info { flex: 1; min-width: 0; }
+.conv-name {
+  font-weight: 600; font-size: 14px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+.conv-preview {
+  color: var(--text2); font-size: 12px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.conv-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.conv-time { font-size: 11px; color: var(--text3); white-space: nowrap; }
+.unread-badge {
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* ─── Sidebar Footer (Profile) ───────────────── */
+.sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.my-name { font-weight: 600; font-size: 13px; }
+.my-status { font-size: 11px; color: var(--text3); }
+.logout-btn { margin-left: auto; color: var(--text3); font-size: 16px; transition: color var(--transition); }
+.logout-btn:hover { color: var(--danger); }
+
+/* ─── Empty State ────────────────────────────── */
+.empty-main {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+  color: var(--text3);
+}
+.empty-icon {
+  width: 80px; height: 80px;
+  background: var(--bg3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+  border: 1px solid var(--border2);
+}
+.empty-title { font-family: var(--font-h); font-size: 20px; font-weight: 700; color: var(--text2); }
+.empty-sub { font-size: 13px; }
+
+/* ─── Chat Header ────────────────────────────── */
+.chat-header {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.chat-header-info { flex: 1; min-width: 0; }
+.chat-name { font-family: var(--font-h); font-weight: 700; font-size: 16px; }
+.chat-status { font-size: 12px; color: var(--accent); font-weight: 500; }
+.chat-status.offline { color: var(--text3); }
+.header-actions { display: flex; gap: 8px; }
+
+/* ─── Messages Area ──────────────────────────── */
+.messages-area {
+  flex: 1; overflow-y: auto;
+  padding: 24px 24px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.msg-row { display: flex; align-items: flex-end; gap: 8px; }
+.msg-row.mine { flex-direction: row-reverse; }
+.msg-bubble {
+  max-width: 65%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  position: relative;
+  word-break: break-word;
+}
+.msg-row.mine .msg-bubble {
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+.msg-row.theirs .msg-bubble {
+  background: var(--bg3);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border);
+}
+.msg-time { font-size: 10px; color: var(--text3); margin-top: 4px; padding: 0 4px; }
+.msg-row.mine .msg-time { text-align: right; }
+.date-divider {
+  text-align: center; font-size: 11px; color: var(--text3);
+  margin: 12px 0; display: flex; align-items: center; gap: 12px;
+}
+.date-divider::before, .date-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.typing-indicator {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 18px; border-bottom-left-radius: 4px;
+  padding: 12px 16px; max-width: fit-content;
+}
+.typing-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--text3);
+  animation: typingBounce 1.2s ease infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ─── Input Area ─────────────────────────────── */
+.input-area {
+  padding: 16px 24px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+.input-row {
+  display: flex; align-items: flex-end; gap: 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 8px 8px 8px 16px;
+  transition: border-color var(--transition);
+}
+.input-row:focus-within { border-color: var(--primary); }
+.msg-input {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--text); font-size: 14px; resize: none;
+  max-height: 120px; min-height: 24px; line-height: 1.5;
+  padding: 4px 0;
+}
+.msg-input::placeholder { color: var(--text3); }
+.send-btn {
+  width: 40px; height: 40px; min-width: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-size: 18px;
+  transition: all var(--transition);
+  box-shadow: 0 2px 12px var(--primary-glow);
+}
+.send-btn:hover { transform: scale(1.05); }
+.send-btn:disabled { opacity: 0.4; transform: none; }
+
+/* ─── Users Panel ────────────────────────────── */
+.users-list { flex: 1; overflow-y: auto; padding: 8px 12px; }
+.user-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; border-radius: 10px;
+  cursor: pointer; transition: background var(--transition);
+}
+.user-item:hover { background: var(--bg3); }
+.user-item-info { flex: 1; min-width: 0; }
+.user-item-name { font-weight: 600; font-size: 13px; }
+.user-item-bio { font-size: 11px; color: var(--text3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.start-chat-btn {
+  background: var(--bg4); color: var(--primary2);
+  border: 1px solid var(--primary-glow); border-radius: 8px;
+  padding: 5px 10px; font-size: 11px; font-weight: 600;
+  transition: all var(--transition);
+}
+.start-chat-btn:hover { background: var(--primary-glow); }
+
+/* ─── Profile Modal ──────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0; background: #00000080; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal {
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: 20px; padding: 32px; width: 380px;
+  animation: fadeUp 0.2s ease;
+}
+.modal-title { font-family: var(--font-h); font-size: 20px; font-weight: 700; margin-bottom: 24px; }
+.modal-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-h); font-weight: 700; font-size: 24px; color: white;
+  margin: 0 auto 20px;
+}
+.modal-actions { display: flex; gap: 10px; margin-top: 24px; }
+.btn-secondary {
+  flex: 1; background: var(--bg3); border: 1px solid var(--border2);
+  color: var(--text2); border-radius: 10px; padding: 11px;
+  font-size: 14px; font-weight: 600; transition: all var(--transition);
+}
+.btn-secondary:hover { background: var(--bg4); color: var(--text); }
+.btn-save {
+  flex: 1; background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color: white; border-radius: 10px; padding: 11px;
+  font-size: 14px; font-weight: 600; transition: all var(--transition);
+}
+.btn-save:hover { opacity: 0.9; }
+
+/* ─── Notification ───────────────────────────── */
+.notif {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: 14px; padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 8px 32px #00000060;
+  animation: slideIn 0.3s ease;
+  max-width: 300px;
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.notif-text { font-size: 13px; }
+.notif-name { font-weight: 600; font-size: 13px; }
+.notif-msg { color: var(--text2); font-size: 12px; margin-top: 2px; }
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 640px) {
+  .sidebar { width: 100%; display: none; }
+  .sidebar.show { display: flex; position: fixed; inset: 0; z-index: 50; }
+}
+
+/* ─── Misc ───────────────────────────────────── */
+.seen-check { font-size: 10px; color: var(--accent); margin-left: 4px; }
+.msg-group-space { margin-top: 10px; }
+.section-label {
+  font-size: 10px; font-weight: 700; color: var(--text3);
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 12px 24px 4px;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+
+<script>
+const { useState, useEffect, useRef, useCallback } = React;
+
+// ─── CONFIG ──────────────────────────────────────────────────────────────
+const API = 'http://localhost:4000/api';
+const SOCKET_URL = 'http://localhost:4000';
+
+// ─── Demo mode (works without backend) ───────────────────────────────────
+const DEMO = true; // set false when backend is running
+
+// Demo data
+const DEMO_USERS = [
+  { id:'u1', name:'Alice Johnson', avatar:'AJ', avatarColor:'#6366f1', bio:'Designer & dreamer ✨', status:'Hey there! I am using Connexa', online:true, lastSeen: new Date() },
+  { id:'u2', name:'Bob Smith',     avatar:'BS', avatarColor:'#10b981', bio:'Coffee addict ☕', status:'Available', online:true, lastSeen: new Date() },
+  { id:'u3', name:'Carol White',   avatar:'CW', avatarColor:'#f59e0b', bio:'Travel lover 🌍', status:'Busy', online:false, lastSeen: new Date(Date.now()-3600000) },
+  { id:'u4', name:'David Lee',     avatar:'DL', avatarColor:'#ef4444', bio:'Music is life 🎵', status:'At gym 💪', online:true, lastSeen: new Date() },
+];
+const DEMO_ME = { id:'me', name:'You', avatar:'YO', avatarColor:'#8b5cf6', bio:'Connexa user', status:'Hey there!', online:true };
+const DEMO_MSGS = {
+  'u1': [
+    { id:'1', senderId:'u1', text:"Hey! How's the project going? 🚀", timestamp: new Date(Date.now()-7200000), read:true },
+    { id:'2', senderId:'me', text:"Going great! Almost done with the UI 🎨", timestamp: new Date(Date.now()-7100000), read:true },
+    { id:'3', senderId:'u1', text:"Nice! Can you send the Figma link?", timestamp: new Date(Date.now()-3600000), read:true },
+    { id:'4', senderId:'me', text:"Sure, sharing now!", timestamp: new Date(Date.now()-3500000), read:true },
+    { id:'5', senderId:'u1', text:"This looks amazing! Love the dark theme 🔥", timestamp: new Date(Date.now()-1800000), read:false },
+  ],
+  'u2': [
+    { id:'6', senderId:'u2', text:"Coffee time? ☕", timestamp: new Date(Date.now()-86400000), read:true },
+    { id:'7', senderId:'me', text:"Always! 5 mins?", timestamp: new Date(Date.now()-86300000), read:true },
+  ],
+  'u3': [
+    { id:'8', senderId:'u3', text:"Are you free this weekend?", timestamp: new Date(Date.now()-172800000), read:true },
+    { id:'9', senderId:'me', text:"Yes! What's the plan?", timestamp: new Date(Date.now()-172700000), read:true },
+    { id:'10', senderId:'u3', text:"Let's go to that new restaurant 🍜", timestamp: new Date(Date.now()-172600000), read:true },
+  ],
+};
+
+// ─── Helpers ──────────────────────────────────────────────────────────────
+const formatTime = d => {
+  const date = new Date(d);
+  return date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+};
+const formatDate = d => {
+  const date = new Date(d);
+  const now = new Date();
+  if (date.toDateString() === now.toDateString()) return 'Today';
+  const y = new Date(now); y.setDate(y.getDate()-1);
+  if (date.toDateString() === y.toDateString()) return 'Yesterday';
+  return date.toLocaleDateString([], {month:'short', day:'numeric'});
+};
+const relativeTime = d => {
+  const date = new Date(d);
+  const now = new Date();
+  const diff = now - date;
+  if (diff < 60000) return 'just now';
+  if (diff < 3600000) return Math.floor(diff/60000)+'m ago';
+  if (diff < 86400000) return formatTime(date);
+  return date.toLocaleDateString([], {month:'short', day:'numeric'});
+};
+
+// ─── SVG Icons ────────────────────────────────────────────────────────────
+const SearchIcon = () => React.createElement('svg', {width:16,height:16,viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:2},
+  React.createElement('circle',{cx:11,cy:11,r:8}),
+  React.createElement('path',{d:'m21 21-4.35-4.35'})
+);
+const SendIcon = () => React.createElement('svg', {width:18,height:18,viewBox:'0 0 24 24',fill:'currentColor'},
+  React.createElement('path',{d:'M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z'})
+);
+const EditIcon = () => '✏️';
+const LogoutIcon = () => '→';
+
+// ─── Avatar Component ─────────────────────────────────────────────────────
+const Avatar = ({user, size='', showOnline=false}) =>
+  React.createElement('div', {className:`avatar ${size}`, style:{background: user.avatarColor || '#6366f1'}},
+    user.avatar,
+    showOnline && user.online && React.createElement('div', {className:'online-dot'})
+  );
+
+// ─── Notification Toast ───────────────────────────────────────────────────
+const Notification = ({notif, onClose}) => {
+  useEffect(() => { const t = setTimeout(onClose, 4000); return ()=>clearTimeout(t); }, []);
+  if (!notif) return null;
+  return React.createElement('div', {className:'notif'},
+    React.createElement(Avatar, {user:notif.sender, size:'avatar-sm'}),
+    React.createElement('div', {},
+      React.createElement('div', {className:'notif-name'}, notif.sender.name),
+      React.createElement('div', {className:'notif-msg'}, notif.text.length>40 ? notif.text.slice(0,40)+'…' : notif.text)
+    )
+  );
+};
+
+// ─── Message Bubble ───────────────────────────────────────────────────────
+const MessageBubble = ({msg, isMe, showAvatar, user}) => {
+  return React.createElement('div', {className:`msg-row ${isMe?'mine':'theirs'} ${showAvatar?'msg-group-space':''}`},
+    !isMe && showAvatar && React.createElement(Avatar, {user, size:'avatar-sm'}),
+    !isMe && !showAvatar && React.createElement('div', {style:{width:36}}),
+    React.createElement('div', {},
+      React.createElement('div', {className:'msg-bubble'}, msg.text),
+      React.createElement('div', {className:'msg-time'},
+        formatTime(msg.timestamp),
+        isMe && msg.read && React.createElement('span', {className:'seen-check'}, ' ✓✓')
+      )
+    )
+  );
+};
+
+// ─── Chat Area ────────────────────────────────────────────────────────────
+const ChatArea = ({chatUser, messages, onSend, typingUser, me}) => {
+  const [text, setText] = useState('');
+  const bottomRef = useRef(null);
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({behavior:'smooth'});
+  }, [messages, typingUser]);
+
+  const handleSend = () => {
+    if (!text.trim()) return;
+    onSend(text.trim());
+    setText('');
+    textareaRef.current.style.height = 'auto';
+  };
+
+  const handleKey = e => {
+    if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
+  };
+
+  const handleInput = e => {
+    setText(e.target.value);
+    e.target.style.height = 'auto';
+    e.target.style.height = Math.min(e.target.scrollHeight, 120)+'px';
+  };
+
+  // Group messages by date
+  const grouped = [];
+  let lastDate = null;
+  messages.forEach((msg, i) => {
+    const d = formatDate(msg.timestamp);
+    if (d !== lastDate) { grouped.push({type:'date', label:d}); lastDate = d; }
+    const prev = messages[i-1];
+    const showAvatar = !prev || prev.senderId !== msg.senderId;
+    grouped.push({type:'msg', msg, showAvatar});
+  });
+
+  return React.createElement('div', {className:'main'},
+    // Header
+    React.createElement('div', {className:'chat-header'},
+      React.createElement(Avatar, {user:chatUser, showOnline:true}),
+      React.createElement('div', {className:'chat-header-info'},
+        React.createElement('div', {className:'chat-name'}, chatUser.name),
+        React.createElement('div', {className:`chat-status ${chatUser.online?'':'offline'}`},
+          typingUser ? 'typing…' : chatUser.online ? '● Online' : `Last seen ${relativeTime(chatUser.lastSeen)}`
+        )
+      ),
+      React.createElement('div', {className:'header-actions'},
+        React.createElement('button', {className:'icon-btn'}, '📞'),
+        React.createElement('button', {className:'icon-btn'}, '📹'),
+        React.createElement('button', {className:'icon-btn'}, 'ℹ️')
+      )
+    ),
+    // Messages
+    React.createElement('div', {className:'messages-area'},
+      grouped.map((g, i) =>
+        g.type === 'date'
+          ? React.createElement('div', {className:'date-divider', key:'d'+i}, g.label)
+          : React.createElement(MessageBubble, {
+              key: g.msg.id,
+              msg: g.msg,
+              isMe: g.msg.senderId === 'me' || g.msg.senderId === me?.id,
+              showAvatar: g.showAvatar,
+              user: chatUser
+            })
+      ),
+      typingUser && React.createElement('div', {className:'msg-row theirs msg-group-space'},
+        React.createElement(Avatar, {user:chatUser, size:'avatar-sm'}),
+        React.createElement('div', {className:'typing-indicator'},
+          React.createElement('div', {className:'typing-dot'}),
+          React.createElement('div', {className:'typing-dot'}),
+          React.createElement('div', {className:'typing-dot'})
+        )
+      ),
+      React.createElement('div', {ref:bottomRef})
+    ),
+    // Input
+    React.createElement('div', {className:'input-area'},
+      React.createElement('div', {className:'input-row'},
+        React.createElement('button', {className:'icon-btn', style:{border:'none',background:'none'}}, '😊'),
+        React.createElement('textarea', {
+          ref: textareaRef,
+          className:'msg-input',
+          placeholder:`Message ${chatUser.name}…`,
+          value:text, onChange:handleInput,
+          onKeyDown:handleKey, rows:1
+        }),
+        React.createElement('button', {
+          className:'send-btn', onClick:handleSend, disabled:!text.trim()
+        }, React.createElement(SendIcon))
+      )
+    )
+  );
+};
+
+// ─── Profile Modal ────────────────────────────────────────────────────────
+const ProfileModal = ({user, onClose, onSave}) => {
+  const [name, setName] = useState(user.name);
+  const [bio, setBio] = useState(user.bio||'');
+  const [status, setStatus] = useState(user.status||'');
+
+  return React.createElement('div', {className:'modal-overlay', onClick:e=>{if(e.target===e.currentTarget)onClose()}},
+    React.createElement('div', {className:'modal'},
+      React.createElement('div', {className:'modal-title'}, 'Edit Profile'),
+      React.createElement('div', {className:'modal-avatar', style:{background:user.avatarColor}}, user.avatar),
+      React.createElement('div', {className:'form-group'},
+        React.createElement('label', {className:'form-label'}, 'Name'),
+        React.createElement('input', {className:'form-input', value:name, onChange:e=>setName(e.target.value)})
+      ),
+      React.createElement('div', {className:'form-group'},
+        React.createElement('label', {className:'form-label'}, 'Bio'),
+        React.createElement('input', {className:'form-input', value:bio, onChange:e=>setBio(e.target.value), placeholder:'Tell something about you…'})
+      ),
+      React.createElement('div', {className:'form-group'},
+        React.createElement('label', {className:'form-label'}, 'Status'),
+        React.createElement('input', {className:'form-input', value:status, onChange:e=>setStatus(e.target.value)})
+      ),
+      React.createElement('div', {className:'modal-actions'},
+        React.createElement('button', {className:'btn-secondary', onClick:onClose}, 'Cancel'),
+        React.createElement('button', {className:'btn-save', onClick:()=>onSave({name,bio,status})}, 'Save Changes')
+      )
+    )
+  );
+};
+
+// ─── Auth Screen ──────────────────────────────────────────────────────────
+const AuthScreen = ({onAuth}) => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [form, setForm] = useState({name:'', email:'', password:''});
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const set = (k,v) => setForm(f=>({...f,[k]:v}));
+
+  const handleSubmit = async () => {
+    setError(''); setLoading(true);
+    if (DEMO) {
+      // Demo login
+      setTimeout(() => {
+        onAuth(DEMO_ME, null);
+        setLoading(false);
+      }, 800);
+      return;
+    }
+    try {
+      const url = `${API}/auth/${isLogin?'login':'register'}`;
+      const res = await fetch(url, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(form)
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      localStorage.setItem('connexa_token', data.token);
+      onAuth(data.user, data.token);
+    } catch(e) { setError(e.message); }
+    setLoading(false);
+  };
+
+  return React.createElement('div', {className:'auth-screen'},
+    React.createElement('div', {className:'auth-orb a'}),
+    React.createElement('div', {className:'auth-orb b'}),
+    React.createElement('div', {className:'auth-card'},
+      React.createElement('div', {className:'auth-logo'},
+        React.createElement('div', {className:'auth-logo-icon'}, '💬'),
+        React.createElement('div', {className:'auth-logo-text'}, 'Connexa')
+      ),
+      React.createElement('div', {className:'auth-title'}, isLogin ? 'Welcome back' : 'Create account'),
+      React.createElement('div', {className:'auth-sub'}, isLogin ? 'Sign in to continue chatting' : 'Join Connexa today — it\'s free'),
+      error && React.createElement('div', {className:'error-msg'}, error),
+      !isLogin && React.createElement('div', {className:'form-group'},
+        React.createElement('label', {className:'form-label'}, 'Full Name'),
+        React.createElement('input', {className:'form-input', placeholder:'Your name', value:form.name, onChange:e=>set('name',e.target.value)})
+      ),
+      React.createElement('div', {className:'form-group'},
+        React.createElement('label', {className:'form-label'}, 'Email'),
+        React.createElement('input', {className:'form-input', type:'email', placeholder:'you@example.com', value:form.email, onChange:e=>set('email',e.target.value),
+          onKeyDown:e=>e.key==='Enter'&&handleSubmit()})
+      ),
+      React.createElement('div', {className:'form-group'},
+        React.createElement('label', {className:'form-label'}, 'Password'),
+        React.createElement('input', {className:'form-input', type:'password', placeholder:'••••••••', value:form.password, onChange:e=>set('password',e.target.value),
+          onKeyDown:e=>e.key==='Enter'&&handleSubmit()})
+      ),
+      React.createElement('button', {className:'btn-primary', onClick:handleSubmit, disabled:loading},
+        loading ? 'Please wait…' : isLogin ? 'Sign In' : 'Create Account'
+      ),
+      DEMO && React.createElement('div', {style:{textAlign:'center',marginTop:12,fontSize:12,color:'var(--text3)'}},
+        '✨ Demo mode — click Sign In to explore'
+      ),
+      React.createElement('div', {className:'auth-switch'},
+        isLogin ? 'New to Connexa?' : 'Already have an account?',
+        React.createElement('button', {onClick:()=>{setIsLogin(!isLogin);setError('')}},
+          isLogin ? 'Create account' : 'Sign in'
+        )
+      )
+    )
+  );
+};
+
+// ─── Main App ─────────────────────────────────────────────────────────────
+const App = () => {
+  const [me, setMe] = useState(null);
+  const [token, setToken] = useState(null);
+  const [users, setUsers] = useState(DEMO ? DEMO_USERS : []);
+  const [messages, setMessages] = useState(DEMO ? DEMO_MSGS : {});
+  const [activeUser, setActiveUser] = useState(null);
+  const [tab, setTab] = useState('chats'); // chats | people
+  const [search, setSearch] = useState('');
+  const [typingUsers, setTypingUsers] = useState({});
+  const [showProfile, setShowProfile] = useState(false);
+  const [notification, setNotification] = useState(null);
+  const socketRef = useRef(null);
+  const typingTimer = useRef({});
+
+  // ── Auth ────────────────────────────────────────────────────────────────
+  const handleAuth = (user, tok) => {
+    setMe(user);
+    setToken(tok);
+    if (!DEMO) initSocket(user, tok);
+    if (!DEMO) fetchUsers(tok);
+  };
+
+  // ── Socket ───────────────────────────────────────────────────────────────
+  const initSocket = (user, tok) => {
+    const socket = io(SOCKET_URL);
+    socketRef.current = socket;
+    socket.emit('user:online', {userId: user.id});
+    socket.on('message:received', ({message, withUserId}) => {
+      setMessages(prev => {
+        const key = withUserId;
+        return {...prev, [key]: [...(prev[key]||[]), message]};
+      });
+      // Show notification if not in that chat
+      setActiveUser(cur => {
+        if (!cur || cur.id !== withUserId) {
+          const sender = users.find(u=>u.id===withUserId);
+          if (sender) setNotification({sender, text: message.text});
+        }
+        return cur;
+      });
+    });
+    socket.on('user:status', ({userId, online, lastSeen}) => {
+      setUsers(prev => prev.map(u => u.id===userId ? {...u,online,lastSeen:lastSeen||u.lastSeen} : u));
+    });
+    socket.on('typing:update', ({userId, typing}) => {
+      setTypingUsers(prev => ({...prev, [userId]: typing}));
+    });
+    socket.on('message:seen', () => {
+      // update read receipts
+    });
+  };
+
+  // ── Fetch users ──────────────────────────────────────────────────────────
+  const fetchUsers = async (tok) => {
+    try {
+      const res = await fetch(`${API}/users`, {headers:{Authorization:`Bearer ${tok}`}});
+      const data = await res.json();
+      setUsers(data);
+    } catch(e) { console.error(e); }
+  };
+
+  // ── Fetch messages ───────────────────────────────────────────────────────
+  const fetchMessages = async (userId) => {
+    if (DEMO) return;
+    try {
+      const res = await fetch(`${API}/messages/${userId}`, {headers:{Authorization:`Bearer ${token}`}});
+      const data = await res.json();
+      setMessages(prev => ({...prev, [userId]: data}));
+    } catch(e) { console.error(e); }
+  };
+
+  const selectUser = (user) => {
+    setActiveUser(user);
+    if (!DEMO) fetchMessages(user.id);
+    socketRef.current?.emit('message:read', {withUserId: user.id});
+  };
+
+  // ── Send message ─────────────────────────────────────────────────────────
+  const sendMessage = (text) => {
+    if (!activeUser) return;
+    const msg = {
+      id: Date.now().toString(),
+      senderId: me.id,
+      text, timestamp: new Date(), read: false
+    };
+    setMessages(prev => ({...prev, [activeUser.id]: [...(prev[activeUser.id]||[]), msg]}));
+
+    if (DEMO) {
+      // Simulate reply in demo
+      if (Math.random() > 0.4) {
+        const replies = ["Nice! 😊", "Got it!", "Sure thing! 👍", "Sounds great!", "Interesting… 🤔", "Tell me more!", "Haha 😄", "On it!", "Will do!", "Thanks!"];
+        setTimeout(() => {
+          const reply = {
+            id: (Date.now()+1).toString(),
+            senderId: activeUser.id,
+            text: replies[Math.floor(Math.random()*replies.length)],
+            timestamp: new Date(), read: false
+          };
+          setMessages(prev => ({...prev, [activeUser.id]: [...(prev[activeUser.id]||[]), reply]}));
+        }, 1000 + Math.random()*2000);
+        // Show typing
+        setTypingUsers(prev=>({...prev,[activeUser.id]:true}));
+        setTimeout(()=>setTypingUsers(prev=>({...prev,[activeUser.id]:false})), 1500+Math.random()*1000);
+      }
+    } else {
+      socketRef.current?.emit('message:send', {toUserId: activeUser.id, text});
+    }
+  };
+
+  // ── Typing ───────────────────────────────────────────────────────────────
+  const handleTypingStart = () => {
+    if (!activeUser || DEMO) return;
+    socketRef.current?.emit('typing:start', {toUserId: activeUser.id});
+    clearTimeout(typingTimer.current[activeUser.id]);
+    typingTimer.current[activeUser.id] = setTimeout(() => {
+      socketRef.current?.emit('typing:stop', {toUserId: activeUser.id});
+    }, 2000);
+  };
+
+  // ── Save profile ─────────────────────────────────────────────────────────
+  const saveProfile = async (data) => {
+    setMe(prev => ({...prev, ...data}));
+    setShowProfile(false);
+    if (!DEMO) {
+      try {
+        await fetch(`${API}/users/me`, {
+          method:'PATCH', headers:{Authorization:`Bearer ${token}`,'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+      } catch(e) {}
+    }
+  };
+
+  const logout = () => {
+    socketRef.current?.disconnect();
+    localStorage.removeItem('connexa_token');
+    setMe(null); setToken(null);
+  };
+
+  // ── Conversations ────────────────────────────────────────────────────────
+  const getConvs = () => {
+    return users
+      .map(u => ({
+        user: u,
+        msgs: messages[u.id] || [],
+        lastMsg: (messages[u.id]||[]).slice(-1)[0] || null,
+        unread: (messages[u.id]||[]).filter(m=>m.senderId!==me?.id && !m.read).length
+      }))
+      .filter(c => c.lastMsg)
+      .sort((a,b) => new Date(b.lastMsg.timestamp)-new Date(a.lastMsg.timestamp));
+  };
+
+  const filteredUsers = users.filter(u =>
+    u.name.toLowerCase().includes(search.toLowerCase())
+  );
+  const filteredConvs = getConvs().filter(c =>
+    c.user.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  if (!me) return React.createElement(AuthScreen, {onAuth: handleAuth});
+
+  return React.createElement('div', {className:'app'},
+    // ── SIDEBAR ────────────────────────────────────────────────────────────
+    React.createElement('div', {className:'sidebar'},
+      // Header
+      React.createElement('div', {className:'sidebar-header'},
+        React.createElement('div', {className:'sidebar-top'},
+          React.createElement('div', {className:'brand'},
+            React.createElement('div', {className:'brand-icon'}, '💬'),
+            React.createElement('div', {className:'brand-name'}, 'Connexa')
+          ),
+          React.createElement('button', {className:'icon-btn'}, '✏️')
+        ),
+        React.createElement('div', {className:'search-wrap'},
+          React.createElement(SearchIcon),
+          React.createElement('input', {
+            className:'search-input',
+            placeholder:'Search…',
+            value:search,
+            onChange:e=>setSearch(e.target.value)
+          })
+        )
+      ),
+      // Tabs
+      React.createElement('div', {className:'tabs'},
+        React.createElement('div', {className:`tab ${tab==='chats'?'active':''}`, onClick:()=>setTab('chats')}, 'Chats'),
+        React.createElement('div', {className:`tab ${tab==='people'?'active':''}`, onClick:()=>setTab('people')}, 'People')
+      ),
+      // Content
+      tab==='chats'
+        ? React.createElement('div', {className:'conv-list'},
+            filteredConvs.length === 0 && React.createElement('div', {style:{textAlign:'center',padding:'32px 16px',color:'var(--text3)',fontSize:13}},
+              search ? 'No chats found' : 'Start a conversation! Go to People tab'
+            ),
+            filteredConvs.map(({user:u, lastMsg, unread}) =>
+              React.createElement('div', {
+                key:u.id, className:`conv-item ${activeUser?.id===u.id?'active':''}`,
+                onClick:()=>selectUser(u)
+              },
+                React.createElement(Avatar, {user:u, showOnline:true}),
+                React.createElement('div', {className:'conv-info'},
+                  React.createElement('div', {className:'conv-name'}, u.name),
+                  React.createElement('div', {className:'conv-preview'}, lastMsg?.text || '')
+                ),
+                React.createElement('div', {className:'conv-meta'},
+                  React.createElement('div', {className:'conv-time'}, lastMsg ? relativeTime(lastMsg.timestamp) : ''),
+                  unread > 0 && React.createElement('div', {className:'unread-badge'}, unread)
+                )
+              )
+            )
+          )
+        : React.createElement('div', {className:'users-list'},
+            React.createElement('div', {className:'section-label'}, `${filteredUsers.length} People`),
+            filteredUsers.map(u =>
+              React.createElement('div', {key:u.id, className:'user-item'},
+                React.createElement(Avatar, {user:u, showOnline:true}),
+                React.createElement('div', {className:'user-item-info'},
+                  React.createElement('div', {className:'user-item-name'}, u.name),
+                  React.createElement('div', {className:'user-item-bio'}, u.bio || u.status)
+                ),
+                React.createElement('button', {
+                  className:'start-chat-btn',
+                  onClick:()=>{ selectUser(u); setTab('chats'); }
+                }, 'Chat')
+              )
+            )
+          ),
+      // Footer
+      React.createElement('div', {className:'sidebar-footer'},
+        React.createElement(Avatar, {user:me}),
+        React.createElement('div', {},
+          React.createElement('div', {className:'my-name'}, me.name),
+          React.createElement('div', {className:'my-status'}, '● Online')
+        ),
+        React.createElement('button', {className:'icon-btn', onClick:()=>setShowProfile(true), title:'Edit Profile'}, '⚙️'),
+        React.createElement('button', {className:'icon-btn logout-btn', onClick:logout, title:'Sign out'}, '↪')
+      )
+    ),
+    // ── MAIN ───────────────────────────────────────────────────────────────
+    activeUser
+      ? React.createElement(ChatArea, {
+          chatUser: users.find(u=>u.id===activeUser.id)||activeUser,
+          messages: messages[activeUser.id]||[],
+          onSend: sendMessage,
+          typingUser: typingUsers[activeUser.id],
+          me
+        })
+      : React.createElement('div', {className:'main'},
+          React.createElement('div', {className:'empty-main'},
+            React.createElement('div', {className:'empty-icon'}, '💬'),
+            React.createElement('div', {className:'empty-title'}, 'Welcome to Connexa'),
+            React.createElement('div', {className:'empty-sub'}, 'Select a chat or start a new conversation')
+          )
+        ),
+    // ── MODALS ─────────────────────────────────────────────────────────────
+    showProfile && React.createElement(ProfileModal, {user:me, onClose:()=>setShowProfile(false), onSave:saveProfile}),
+    notification && React.createElement(Notification, {notif:notification, onClose:()=>setNotification(null)})
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+</script>
+</body>
+</html>
