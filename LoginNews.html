@@ -1,28 +1,77 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
+    <title>Login Page</title>
 </head>
 
 <body style="background-color: beige;">
-    <table border="2x solid" hight="200" width="700">
-        <form action="">
+
+    <table border="2" height="200" width="700">
+        <form>
+
             <tr>
                 <td>
-                    <h2>Mharashtra New Portal Login</h2>
-                    <label for="email">Enter Your Email:*</label>
-                    <input type="email" name="" id="" placeholder="Enter your Email.." required>
-                    <br>
-                    </br>
-                    <label for="Password">Enter Your Password:*</label>
-                    <input type="password" name="" id="" placeholder="Enter your password.." required>
+
+                    <h2>Maharashtra News Portal Login</h2>
+
+                    <label>Enter Your Email:*</label>
+                    <input type="email" id="email"
+                        placeholder="Enter your Email.." required>
+
                     <br><br>
-                    <a href="New_Site.HTML" style="background-color:orange; color: white; padding: 8px 16px">Login</a>
+
+                    <label>Enter Your Password:*</label>
+                    <input type="password" id="password"
+                        placeholder="Enter your password.." required>
+
+                    <br><br>
+
+                    <!-- Login Button -->
+                    <button type="button"
+                        onclick="checkLogin()"
+                        style="background-color:orange;
+                        color:white;
+                        padding:8px 16px;">
+                        Login
+                    </button>
+
                 </td>
             </tr>
+
+        </form>
     </table>
-    </form>
+
+    <script>
+
+        function checkLogin() {
+
+            // Get input values
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            // Correct Login Details
+            let correctEmail = "admin@gmail.com";
+            let correctPassword = "12345";
+
+            // If Else Logic
+            if (email == correctEmail && password == correctPassword) {
+
+                alert("Login Successful");
+
+                // Open next page
+                window.location.href = "New_Site.HTML";
+
+            }
+            else {
+
+                alert("Wrong Email or Password");
+
+            }
+        }
+
+    </script>
+
 </body>
 
-</html>>
+</html>
