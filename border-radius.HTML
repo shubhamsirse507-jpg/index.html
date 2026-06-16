@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+            justify-content: center;
+        }
+
+        .shape {
+            width: 250;
+            height: 150px;
+        }
+
+        .leaf {
+            height: 100px;
+            width: 100px;
+            background: rgb(0, 153, 255);
+            border-radius: 0 50% 0 50%;
+            color: white;
+            margin: 20px;
+        }
+
+        .half-circle {
+            width: 300px;
+            height: 150px;
+            background: blue;
+            border-radius: 0 0 150px 150px;
+            margin: 20px;
+            color: white;
+        }
+
+        .oval {
+            width: 300px;
+            height: 150px;
+            background: rgb(254, 161, 0);
+            border-radius: 100%;
+            margin: 30px;
+            color: white;
+        }
+
+        .twist {
+            width: 300px;
+            height: 150px;
+            background: rgb(27, 107, 0);
+            border-radius: 0 100%;
+            margin: 30px;
+            color: white;
+        }
+
+        .twist-two {
+            width: 300px;
+            height: 150px;
+            background: rgb(106, 5, 152);
+            border-radius: 0 50% 0;
+            margin: 30px;
+            color: white;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            background: rgb(255, 0, 255);
+            border-radius: 100%;
+            margin: 30px;
+            color: white;
+        }
+
+        .tab {
+            width: 100px;
+            height: 100px;
+            background: rgb(0, 153, 255);
+            border-radius: 0 0 100% 100%;
+            margin: 30px;
+            color: white;
+        }
+
+        .three-sided {
+            width: 130px;
+            height: 100px;
+            background:blue;
+            border-radius: 0 50% 50% 50%;
+            margin: 30px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="shape leaf" align="center">Leaf</div>
+        <div class="shape half-circle" align="center">Half circle</div>
+        <div class="shape oval" align="center">ovel</div>
+        <div class="shape twist">twist</div>
+
+        <div class="shape twist-two" align="center">twist-two</div>
+        <div class="circle" align="center">circle</div>
+        <div class="shape tab" align="center">tab</div>
+        <div class="shape three-sided" align="center">three-sided</div>
+    </div>
+</body>
+
+</html>
