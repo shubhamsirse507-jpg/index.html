@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Animation</title>
+    <link rel="shortcut icon" href="smiley.png" type="image/x-icon">
+    <style>
+        div {
+            height: 500px;
+            width: 500px;
+            background: lightblue;
+            box-shadow: 1px soli black;
+            border-radius: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            top: 100px;
+            left: 420px;
+            position: absolute;
+        }
+
+        .e1 {
+            height: 200px;
+            width: 200px;
+            background: linear-gradient(135deg,
+                    #FFF176 0%,
+                    #FDD835 50%,
+                    #FBC02D 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgb(0, 0, 0, 0.1);
+            border: 1px solid;
+            position: relative;
+            animation-name: e1;
+
+            animation: bounce 1.2s ease-in-out infinite;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .e1:hover {
+            transform: scale(1.12) rotate(-5deg);
+            box-shadow: 0 12px 32px rgb(0, 0, 0, 0.18);
+            animation-play-state: paused;
+        }
+
+        @keyframes bounce {}
+
+        .e2 {
+            height: 40px;
+            width: 40px;
+            background-color: white;
+            border-radius: 50%;
+            border: 1px solid;
+            position: absolute;
+            top: 50px;
+            left: 40px;
+        }
+
+        .e3 {
+            height: 40px;
+            width: 40px;
+            background-color: white;
+            border-radius: 50%;
+            border: 1px solid;
+            position: absolute;
+            top: 50px;
+            left: 120px;
+        }
+
+        .e4 {
+            height: 40px;
+            width: 90px;
+            background: rgb(218, 68, 68);
+            border-radius: 0 0 150px 150px;
+            margin: 20px;
+            color: white;
+            position: absolute;
+            top: 110px;
+            left: 35px;
+        }
+
+        .e4:hover {
+            transform: scale(1.12) rotate(-5deg);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+            animation-play-state: running;
+        }
+
+        .e4 {
+            animation: blink 3s ease-in-out infinite;
+        }
+
+        .e5 {
+            height: 20px;
+            width: 20px;
+            background-color: black;
+            border-radius: 50%;
+            border: 1px solid;
+            position: absolute;
+            top: 60px;
+            left: 50px;
+            animation-name: e5;
+            animation: blink 3s ease-in-out infinite;
+        }
+
+        .e6 {
+            height: 20px;
+            width: 20px;
+            background-color: black;
+            border-radius: 50%;
+            border: 1px solid;
+            position: absolute;
+            top: 60px;
+            left: 130px;
+            animation-name: e6;
+            animation: blink 3s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            90%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            95% {
+                transform: scaleY(0.1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>😊Keep Smailing</h1>
+    <div>
+        <div Class="e1">
+            <div class="e2"></div>
+            <div class="e3"></div>
+            <div class="e4"></div>
+            <div class="e5"></div>
+            <div class="e6"></div>
+        </div>
+    </div>
+</body>
+
+</html>

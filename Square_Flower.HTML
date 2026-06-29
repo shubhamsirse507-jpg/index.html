@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square Flower</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .Box1 {
+            height: 400px;
+            width: 400px;
+            border: 6px solid black;
+            position: absolute;
+            animation: clockwise 3s linear infinite;
+        }
+
+        .Box1,
+        .Box3,
+        .Box5,
+        .Box7,
+        .Box9,
+        .Box11 {
+            animation: clockwise 3s linear infinite;
+
+        }
+
+        .Box2,
+        .Box6,
+        .Box10 {
+            animation: anticlockwise 2s linear infinite;
+            border-color: blue;
+            top: 50%;
+            left: 50%;
+        }
+
+        .Box4,
+        .Box8 {
+            animation: clockwise 2s linear infinite;
+            border-color: green;
+            /* 3rd pattern repeats clockwise */
+        }
+
+        @keyframes clockwise {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes anticlockwise {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        .Box2 {
+            height: 360px;
+            width: 360px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box3 {
+            height: 320px;
+            width: 320px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box4 {
+            height: 280px;
+            width: 280px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box5 {
+            height: 240px;
+            width: 240px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box6 {
+            height: 200px;
+            width: 200px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box7 {
+            height: 160px;
+            width: 160px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box8 {
+            height: 120px;
+            width: 120px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box9 {
+            height: 80px;
+            width: 80px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box10 {
+            height: 40px;
+            width: 40px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+
+        .Box11 {
+            height: 0px;
+            width: 0px;
+            border: 6px solid black;
+            position: absolute;
+            top: 15px;
+            left: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Box1">
+        <div class="Box2">
+            <div class="Box3">
+                <div class="Box4">
+                    <div class="Box5">
+                        <div Class="Box6">
+                            <div class="Box7">
+                                <div class="Box8">
+                                    <div class="Box9">
+                                        <div class="Box10">
+                                            <div class="Box11"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
